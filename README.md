@@ -33,6 +33,6 @@ Se cargó el dataset en MongoDB de forma local. Respecto al filtrado, la idea er
 
 ## To Do List
 
--[ ] Conectar *backend* con *frontend*
--[ ] Realizar los filtros
--[ ] Aprender Angular
+- [ ] Conectar *backend* con *frontend*
+- [ ] Realizar los filtros
+- [ ] Aprender Angular
