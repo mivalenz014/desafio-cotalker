@@ -1,0 +1,97 @@
+<nav class="navbar navbar-light darkblue-bg">
+  <div class="container-fluid">
+    <a class="navbar-brand not-active" href="#" style="color:white">
+      <img src="../assets/cotalker-logo.png" alt="" height="30" class="d-inline-block align-center">
+      Cotalker Graphics
+    </a>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="container-fluid d-flex padding-container">
+    <div class="row justify-content-center align-self-center">
+      <div class="col-md-4" style="border-right: 1px solid gray;padding-right: 30px;">
+        <h3>Filtros</h3>
+        <form role="form">
+          <div class="form-group" style="padding-bottom: 15px;">
+            <label for="intervaloActivo">
+              Intervalo activo (minutos)
+            </label>
+            <input type="number" class="form-control" [(ngModel)]="intervaloActivo" [ngModelOptions]="{standalone: true}" min="1"/>
+          </div>
+          
+          <div class="form-group" style="padding-bottom: 15px;">
+            <label for="companyID">
+              Número de Compañía
+            </label>
+            <input type="number" class="form-control" [(ngModel)]="companyID" [ngModelOptions]="{standalone: true}" min="0" max="47"/>
+            <small id="companyIDHelpBlock" class="form-text text-muted">
+              El número de la compañía debe ser un número entre 0 y 47 (inclusive).
+            </small>
+          </div>
+          
+          <div class="form-group" style="padding-bottom: 15px;">
+            <label for="userID">
+              Número de Usuario
+            </label>
+            <input type="number" class="form-control" [(ngModel)]="userID" [ngModelOptions]="{standalone: true}" min="0" max="6301"/>
+            <small id="companyIDHelpBlock" class="form-text text-muted">
+              El número del usuario debe ser un número entre 0 y 6301 (inclusive).
+            </small>
+          </div>
+
+          <div class="form-group" style="padding-bottom: 15px;">
+            <label for="fechaInicio">
+              Fecha inicio
+            </label>
+            <input type="datetime-local" [(ngModel)]="fechaInicio" [ngModelOptions]="{standalone: true}" class="form-control" min="2017-02-23T19:41" max="2018-10-24T23:26"/>
+            <label for="fechaTermino" style="padding-top: 5px;">
+              Fecha Término
+            </label>
+            <input type="datetime-local" [(ngModel)]="fechaTermino" [ngModelOptions]="{standalone: true}" class="form-control" min="2017-02-23T19:41" max="2018-10-24T23:26"/>
+            <small id="fechaTerminoHelpBlock" class="form-text text-muted">
+              La fecha debe encontrarse entre el {{minDate | date : 'medium'}} y el {{maxDate | date : 'medium'}}
+            </small>
+          </div>
+
+          <button (click)="obtenerData()" type="button" class="btn btn-primary">
+            Graficar
+          </button>
+        </form>
+      </div>
+      <div class="col-md-8" style="padding-left: 50px;">
+        <div class="box">
+          <h3>Sesiones activas vs Tiempo</h3>
+        </div>
+        <app-grafico></app-grafico>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="box">
+              <span> Compañía: {{companyID >= 0 ? companyID : "Todos" }} </span>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="box">
+              <span> Fecha: {{fechaInicio | date : 'medium' }} - {{fechaTermino | date : 'medium' }} </span>
+            </div>
+          </div>
+        </div> 
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="box">
+              <span> Usuario: {{userID >= 0 ? userID : "Todos" }} </span>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="box">
+              Intervalo activo: {{intervaloActivo}} {{intervaloActivo > 1 ? "minutos" : "minuto"}}
+            </div>
+          </div>
+        </div> 
+
+      </div>
+    </div>
+  </div>
+
+</div>
